@@ -53,6 +53,8 @@
 
 ;; Test the test inputs
 (defn test-inputs
+  "True if for each example pair, the output of an example input applied to the
+  given function is the same as the example output"
   [f examples]
   (every? true?
           (map (fn [[k v]]
@@ -73,6 +75,7 @@
 ;;; Part 2
 
 (def examples-pt2
+  "A map of example input and their answers for part 1"
   {"1212" 6
    "1221" 0
    "123425" 4
@@ -84,11 +87,13 @@
   [coll n]
   (get coll (mod n (count coll))))
 
-;; [1 2 1 2] => [(1 1) (2 2) (1 1) (2 2)]
 (defn all-halfway-pairs
+  "Creates a seq of pairs of each number and the number halfway around the coll.
+
+  E.g: [1 2 3 4] => [(1 3) (2 4) (3 1) (4 2)]"
   [coll]
   (let [len (count coll)
-        rot (/ len 2)]
+        rot (/ len 2)] ;; The problem says we'll only get even length inputs so this is fine
     (loop [acc []
            idx 0]
       (if (= len idx)
@@ -98,6 +103,7 @@
                (inc idx))))))
 
 (defn sum-halfway-inputs
+  "Parses the input and then sums the numbers of the matched pairs"
   [input]
   (->> input
        (parse)
