@@ -3,7 +3,9 @@
 
 (set-env! :resource-paths #{"resources" "src"}
           :source-paths   #{"test"}
-          :dependencies   '[[org.clojure/clojure "1.9.0-alpha17"]])
+          :dependencies   '[[org.clojure/clojure "1.9.0-alpha17"]
+                            [org.clojure/core.async "0.3.465"]
+                            [org.clojure/math.combinatorics "0.1.4"]])
 
 (task-options!
  aot {:namespace   #{'adv.core}}

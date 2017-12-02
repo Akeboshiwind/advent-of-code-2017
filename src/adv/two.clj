@@ -1,6 +1,8 @@
 (ns adv.two
   (:require [clojure.string :as str]
-            [adv.utils :as u]))
+            [adv.utils :as u]
+            [clojure.core.async :as a]
+            [clojure.math.combinatorics :as c]))
 
 ;; Part 1
 
@@ -59,3 +61,39 @@
 
 (checksum input)
 ;; => 47136
+
+;; Part 2
+(def examples-pt2
+  {"5\t9\t2\t8
+9\t4\t7\t3
+3\t8\t6\t5" 9})
+
+(defn evenly-divisible?
+  "If a is evenly divisible by b return the result of that"
+  [a b]
+  (let [x (/ a b)]
+    (if (int? x)
+      x
+      (let [y (/ b a)]
+        (when (int? y)
+          y)))))
+
+(defn sum-evenly-divisible
+  "Parse the input and then work out sum of the evenly divisible pairs in each row"
+  [input]
+  (->> input
+       (parse)
+       ((fn [sheet]
+          (for [row sheet]
+            (->> (c/combinations row 2)
+                 (map #(apply evenly-divisible? %))
+                 (u/find-first #(not (nil? %)))))))
+       (reduce + 0)))
+
+;; Test the test inputs
+(u/test-examples sum-evenly-divisible examples-pt2)
+;; => true
+
+;; Now for the actual input
+(sum-evenly-divisible input)
+;; => 250

@@ -16,3 +16,10 @@
           (map (fn [[k v]]
                  (= v (f k)))
                examples)))
+
+(defn find-first
+  "Returns the first element in the column to satisfy the predicate
+
+  Stolen from: https://stackoverflow.com/a/10192733"
+  [pred coll]
+  (first (filter pred coll))) ;; This is ok because filter is lazy
