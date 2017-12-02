@@ -1,5 +1,6 @@
 (ns adv.one
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [adv.utils :as u]))
 
 ;; Part 1
 
@@ -52,16 +53,7 @@
       (sum-matches)))
 
 ;; Test the test inputs
-(defn test-inputs
-  "True if for each example pair, the output of an example input applied to the
-  given function is the same as the example output"
-  [f examples]
-  (every? true?
-          (map (fn [[k v]]
-                 (= v (f k)))
-               examples)))
-
-(test-inputs sum-input examples-pt1)
+(u/test-examples sum-input examples-pt1)
 ;; => true
 
 ;; Now for the actual input
@@ -111,7 +103,7 @@
        (sum-matches)))
 
 ;; Test the test inputs
-(test-inputs sum-halfway-inputs examples-pt2)
+(u/test-examples sum-halfway-inputs examples-pt2)
 ;; => true
 
 ;; Now for the actual input
