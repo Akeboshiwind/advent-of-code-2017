@@ -1,5 +1,13 @@
 (ns adv.utils)
 
+(defn digit->int
+  [digit]
+  (Character/digit digit 10))
+
+(defn str->int
+  [str]
+  (Integer/parseInt str))
+
 (defn test-examples
   "True if for each example pair, the output of an example input applied to the
   given function is the same as the example output"
