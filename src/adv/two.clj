@@ -19,21 +19,17 @@
        (str/split-lines)
        (map #(map u/str->int (str/split % #"\t")))))
 
-(defn differences
+(def differences
   "Given a list of rows, works out the difference between the min and max in that row"
-  [sheet]
   (map (fn [row]
-         (- (apply max row) (apply min row)))
-       sheet))
+         (- (apply max row) (apply min row)))))
 
 (defn checksum
-  "Given a tab separated file, parses the input into rows of ints and then works out
-  the checksum"
+  "Given a tab separated file, parses the input into rows of ints and then works out the checksum"
   [input]
   (->> input
        (parse)
-       (differences)
-       (reduce + 0)))
+       (transduce differences + 0)))
 
 ;; Test the test inputs
 (u/test-examples checksum examples-pt1)
