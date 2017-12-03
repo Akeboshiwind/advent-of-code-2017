@@ -1,7 +1,6 @@
 (ns adv.two
   (:require [clojure.string :as str]
             [adv.utils :as u]
-            [clojure.core.async :as a]
             [clojure.math.combinatorics :as c]))
 
 ;; Part 1
@@ -22,7 +21,7 @@
 (def differences
   "Given a list of rows, works out the difference between the min and max in that row"
   (map (fn [row]
-         (- (apply max row) (apply min row)))))
+         (- (apply max row) (apply min row)))
 
 (defn checksum
   "Given a tab separated file, parses the input into rows of ints and then works out the checksum"
