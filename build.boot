@@ -5,7 +5,8 @@
           :source-paths   #{"test"}
           :dependencies   '[[org.clojure/clojure "1.9.0-alpha17"]
                             [org.clojure/core.async "0.3.465"]
-                            [org.clojure/math.combinatorics "0.1.4"]])
+                            [org.clojure/math.combinatorics "0.1.4"]
+                            [org.clojure/math.numeric-tower "0.0.4"]])
 
 (task-options!
  aot {:namespace   #{'adv.core}}
