@@ -66,12 +66,28 @@
 
 ;;; Part 2
 
-#_
 (def examples-pt2
-  "A map of example input and their answers for part 1"
-  {})
+  "A map of example input and their answers for part 2"
+  {1 1
+   2 1
+   3 2
+   4 4
+   5 5
+   6 10
+   7 11
+   8 23
+   9 25
+   10 26
+   11 54
+   12 57
+   13 59
+   14 122})
 
-
+(defn grid
+  ([]
+   (grid 1))
+  ([n]
+   (lazy-seq (cons n (grid (inc n))))))
 
 ;; Test the test inputs
 #_
