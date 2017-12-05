@@ -15,7 +15,7 @@
 (defn square-width
   "Given a number, work out the width of it's layer in the Ulam Spiral"
   [n]
-  (let [width* (int (math/ceil (math/sqrt n)))]
+  (let [width* (long (math/ceil (math/sqrt n)))]
     (if (even? width*)
       (+ 1 width*)
       width*)))
