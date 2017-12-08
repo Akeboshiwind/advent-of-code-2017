@@ -23,3 +23,15 @@
   Stolen from: https://stackoverflow.com/a/10192733"
   [pred coll]
   (first (filter pred coll))) ;; This is ok because filter is lazy
+
+(defn rotl
+  "Rotate the given seq by n to the left"
+  [n coll]
+  (let [n (mod n (count coll))]
+    (concat (drop n coll)
+            (take n coll))))
+
+(defn rotr
+  "Rotate the given seq by n to the right"
+  [n coll]
+  (rotl (- n) coll))
